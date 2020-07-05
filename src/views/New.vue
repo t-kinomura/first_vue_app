@@ -1,6 +1,6 @@
 <template>
   <div class="editor">
-    <hi>New Memo</hi>
+    <h1>New Memo</h1>
     <textarea name="nemo" v-model="memoBody"></textarea>
     <button @click="save">保存</button>
   </div>
@@ -26,12 +26,14 @@ export default {
   name: "new",
   data: function() {
     return {
-      memoBody: "メモです"
+      memoBody: ""
     }
   },
   methods: {
     save: function() {
-      alert('保存されました');
+      this.$store.commit("save", {
+        body: this.memoBody
+      });
       this.$router.push("/");
     }
   }
